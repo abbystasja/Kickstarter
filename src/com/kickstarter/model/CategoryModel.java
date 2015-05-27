@@ -1,28 +1,33 @@
 package com.kickstarter.model;
 
 import com.kickstarter.entities.Category;
-import com.kickstarter.entities.Quote;
+import com.kickstarter.entities.Project;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by akulygina on 5/27/2015.
  */
 public class CategoryModel {
-    private List<Category> categories;
+    private Map<Category, List<Project>> categories;
 
     public CategoryModel(){
-        categories = new ArrayList<Category>();
+        categories = new HashMap<Category, List<Project>>();
     }
 
-    public void addCategory(Category category){
-        categories.add(category);
+    public void addProjectForCategory(Category category, Project project){
+        if(!categories.containsKey(category)){
+            categories.put(category, new ArrayList<Project>());
+        }
+        categories.get(category).add(project);
     }
 
-    public List<Category> getCategories(){
-        return categories;
+    public Set<Category> getCategories(){
+        return categories.keySet();
+    }
+
+    public List<Project> getProjectsForCategory(Category category){
+        return categories.get(category);
     }
 
 }
