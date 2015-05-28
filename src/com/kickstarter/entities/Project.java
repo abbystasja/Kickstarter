@@ -1,6 +1,8 @@
 package com.kickstarter.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by akulygina on 5/27/2015.
@@ -14,12 +16,19 @@ public class Project {
 
     private Date endDate;
 
+    private List<QuestionAndAnswer> questionAndAnswers;
+
     public Project(String name, String shortDescription, int neededMoney, int collectedMoney, Date endDate) {
         this.name = name;
         this.shortDescription = shortDescription;
         this.neededMoney = neededMoney;
         this.collectedMoney = collectedMoney;
         this.endDate = endDate;
+        questionAndAnswers = new ArrayList<QuestionAndAnswer>();
+    }
+
+    public void addQuestionAndAnswer(QuestionAndAnswer questionAndAnswer){
+        questionAndAnswers.add(questionAndAnswer);
     }
 
     public String getName() {
@@ -59,6 +68,14 @@ public class Project {
     }
 
     public String getFullDescription(){
-        return "Full description " + getShortProjectDescription();
+        StringBuilder sb = new StringBuilder();
+        for(QuestionAndAnswer questionAndAnswer : questionAndAnswers){
+            sb.append(questionAndAnswer);
+        }
+        return getShortProjectDescription() + "[" + sb.toString() + "]";
+    }
+
+    public void setCollectedMoney(int collectedMoney) {
+        this.collectedMoney = collectedMoney;
     }
 }

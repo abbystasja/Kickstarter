@@ -1,6 +1,7 @@
 package com.kickstarter.controller;
 
 import com.kickstarter.entities.Category;
+import com.kickstarter.entities.Quote;
 import com.kickstarter.repository.ModelsRepository;
 import com.kickstarter.view.IndexView;
 import com.kickstarter.view.View;
@@ -27,13 +28,20 @@ public class MainController extends Controller{
 
     @Override
     public View getPage() {
-        return new IndexView(categoryList,
-                ModelsRepository.getQuotesModelInstance().getRandomQuote());
+        return new IndexView(this);
     }
 
     @Override
     public Controller getNextController(int nextPosition) {
         return new CategoriesController(this, categoryList.get(nextPosition-1));
+    }
+
+    public List<Category> getCategoryList(){
+        return categoryList;
+    }
+
+    public Quote getQuote(){
+        return ModelsRepository.getQuotesModelInstance().getRandomQuote();
     }
 
 

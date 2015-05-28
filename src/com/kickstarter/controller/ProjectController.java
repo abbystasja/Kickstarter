@@ -16,22 +16,22 @@ public class ProjectController extends Controller {
         this.project = project;
     }
 
-    public ProjectController(Controller prevController) {
-        super(prevController);
-    }
-
     @Override
     public boolean outOfRange(int nextPosition) {
-        return nextPosition == 0;
+        return nextPosition == 0 || nextPosition == 1;
     }
 
     @Override
     public View getPage() {
-        return new ProjectView(project);
+        return new ProjectView(this);
     }
 
     @Override
     public Controller getNextController(int nextPosition) {
-        return null;
+        return new PaymentController(this, project);
+    }
+
+    public Project getProject(){
+        return project;
     }
 }

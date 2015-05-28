@@ -1,5 +1,7 @@
 package com.kickstarter.view;
 
+import com.kickstarter.controller.Controller;
+import com.kickstarter.controller.MainController;
 import com.kickstarter.entities.Category;
 import com.kickstarter.entities.Quote;
 
@@ -8,22 +10,18 @@ import java.util.*;
 /**
  * Created by akulygina on 5/27/2015.
  */
-public class IndexView extends View{
+public class IndexView extends View<MainController>{
 
-    private List<Category> categories;
-    private Quote quote;
-
-
-    public IndexView(List<Category> categories, Quote quote){
-        this.categories = categories;
-        this.quote = quote;
-
+    public IndexView(MainController controller) {
+        super(controller);
     }
 
     @Override
     public void display(){
-        System.out.println(quote);
+        System.out.println(controller.getQuote());
         System.out.println();
+
+        List<Category> categories = controller.getCategoryList();
 
         for (int i = 0; i < categories.size(); i++) {
             System.out.println(i + 1 + " " + categories.get(i));
@@ -32,7 +30,7 @@ public class IndexView extends View{
 
     @Override
     public int determineNextStep() {
-        System.out.println("Please enter value between 1 and " + categories.size() + " or 0 to Exit");
+        System.out.println("Please enter value between 1 and " + controller.getCategoryList().size() + " or 0 to Exit");
         return in.nextInt();
     }
 }

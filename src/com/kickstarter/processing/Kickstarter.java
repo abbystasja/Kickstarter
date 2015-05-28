@@ -18,6 +18,7 @@ public class Kickstarter {
 
     public void run(){
         Controller controller = new MainController(null);
+
         while(controller!=null) {
             controller = controller.process();
         }

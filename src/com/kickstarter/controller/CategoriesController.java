@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class CategoriesController extends Controller {
 
-    private int categorySelected;
     private List<Project> projectList;
 
     public CategoriesController(Controller prevController, Category category) {
@@ -32,11 +31,16 @@ public class CategoriesController extends Controller {
 
     @Override
     public View getPage() {
-        return new CategoriesView(projectList);
+        return new CategoriesView(this);
     }
 
     @Override
     public Controller getNextController(int nextPosition) {
         return new ProjectController(this, projectList.get(nextPosition - 1));
     }
+
+    public List<Project> getProjectList(){
+        return projectList;
+    }
+
 }
