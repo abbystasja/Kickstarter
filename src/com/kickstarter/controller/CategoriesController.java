@@ -11,12 +11,12 @@ import java.util.List;
 /**
  * Created by akulygina on 5/28/2015.
  */
-public class CategoriesController extends Controller{
+public class CategoriesController extends Controller {
 
     private int categorySelected;
     private List<Project> projectList;
 
-    public CategoriesController(Controller prevController, Category category){
+    public CategoriesController(Controller prevController, Category category) {
         this(prevController);
         projectList = ModelsRepository.getCategoryModelInstance().getProjectsForCategory(category);
     }
@@ -27,7 +27,7 @@ public class CategoriesController extends Controller{
 
     @Override
     public boolean outOfRange(int nextPosition) {
-        return nextPosition >=0 && nextPosition <= projectList.size();
+        return nextPosition >= 0 && nextPosition <= projectList.size();
     }
 
     @Override
@@ -37,6 +37,6 @@ public class CategoriesController extends Controller{
 
     @Override
     public Controller getNextController(int nextPosition) {
-        return null;
+        return new ProjectController(this, projectList.get(nextPosition - 1));
     }
 }

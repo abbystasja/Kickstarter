@@ -2,7 +2,6 @@ package com.kickstarter.view;
 
 import com.kickstarter.entities.Category;
 import com.kickstarter.entities.Quote;
-import com.kickstarter.repository.ModelsRepository;
 
 import java.util.*;
 

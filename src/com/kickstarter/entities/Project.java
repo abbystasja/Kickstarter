@@ -1,6 +1,5 @@
 package com.kickstarter.entities;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -57,5 +56,9 @@ public class Project {
                 append("\tCollected money ").append(collectedMoney).append(" ").
                 append("\tDays left ").append(calculateDaysLeft()).append(" ");
         return sb.toString();
+    }
+
+    public String getFullDescription(){
+        return "Full description " + getShortProjectDescription();
     }
 }
