@@ -6,8 +6,6 @@ import com.kickstarter.entities.Category;
 import com.kickstarter.entities.Project;
 import com.kickstarter.entities.Quote;
 import com.kickstarter.repository.ModelsRepository;
-import com.kickstarter.view.IndexView;
-import com.kickstarter.view.View;
 
 import java.util.Calendar;
 
@@ -20,7 +18,9 @@ public class Kickstarter {
 
     public void run(){
         Controller controller = new MainController(null);
-        controller.process();
+        while(controller!=null) {
+            controller = controller.process();
+        }
     }
 
 

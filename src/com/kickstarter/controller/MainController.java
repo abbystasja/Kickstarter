@@ -14,8 +14,8 @@ import java.util.List;
 public class MainController extends Controller{
     List<Category> categoryList;
 
-    public MainController(View prevView) {
-        super(prevView);
+    public MainController(Controller prevController) {
+        super(null);
         categoryList = new ArrayList<Category>();
         categoryList.addAll(ModelsRepository.getCategoryModelInstance().getCategories());
     }
@@ -32,8 +32,9 @@ public class MainController extends Controller{
     }
 
     @Override
-    public View getNextPage(int nextPosition) {
-        return null;
+    public Controller getNextController(int nextPosition) {
+        return new CategoriesController(this, categoryList.get(nextPosition-1));
     }
+
 
 }

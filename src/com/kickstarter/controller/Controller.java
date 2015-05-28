@@ -6,41 +6,39 @@ import com.kickstarter.view.View;
  * Created by akulygina on 5/27/2015.
  */
 public abstract class Controller {
-    protected View prevView;
+
+    protected Controller prevController;
     protected View currView;
 
-    public Controller(View prevView) {
-        this.prevView = prevView;
+    public Controller(Controller prevController) {
+        this.prevController = prevController;
     }
 
-    public View getPrevView() {
-        return prevView;
+    public Controller getPrevController() {
+        return prevController;
     }
 
-    public void process() {
+    public Controller process() {
         currView = getPage();
         currView.display();
 
-        while (true) {
-            int nextPosition = -1;
-            do {
-                nextPosition = currView.determineNextStep();
-            } while (!outOfRange(nextPosition));
+        int nextPosition = -1;
 
-            if (nextPosition == 0) {
-                getPrevView();
-                return;
-            }
+        do {
+            nextPosition = currView.determineNextStep();
+        } while (!outOfRange(nextPosition));
 
-            prevView = currView;
-            currView = getNextPage(nextPosition);
+        if (nextPosition == 0) {
+            return getPrevController();
         }
+
+        return getNextController(nextPosition);
     }
 
     public abstract boolean outOfRange(int nextPosition);
 
     public abstract View getPage();
 
-    public abstract View getNextPage(int nextPosition);
+    public abstract Controller getNextController(int nextPosition);
 
 }

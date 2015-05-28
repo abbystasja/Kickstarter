@@ -52,10 +52,10 @@ public class Project {
     public String getShortProjectDescription(){
         StringBuilder sb = new StringBuilder();
         sb.append("Name ").append(name).append(" ").
-                append("Short description ").append(shortDescription).append(" ").
-                append("Needed money ").append(neededMoney).append(" ").
-                append("Collected money ").append(collectedMoney).append(" ").
-                append("Days left ").append(calculateDaysLeft()).append(" ");
+                append("\tShort description ").append(shortDescription).append(" ").
+                append("\tNeeded money ").append(neededMoney).append(" ").
+                append("\tCollected money ").append(collectedMoney).append(" ").
+                append("\tDays left ").append(calculateDaysLeft()).append(" ");
         return sb.toString();
     }
 }

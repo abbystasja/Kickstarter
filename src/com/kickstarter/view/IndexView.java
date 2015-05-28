@@ -9,16 +9,16 @@ import java.util.*;
 /**
  * Created by akulygina on 5/27/2015.
  */
-public class IndexView implements View{
+public class IndexView extends View{
 
     private List<Category> categories;
     private Quote quote;
-    Scanner in;
+
 
     public IndexView(List<Category> categories, Quote quote){
         this.categories = categories;
         this.quote = quote;
-        in = new Scanner(System.in);
+
     }
 
     @Override
