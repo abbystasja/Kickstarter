@@ -18,7 +18,7 @@ public class ProjectController extends Controller {
 
     @Override
     public boolean outOfRange(int nextPosition) {
-        return nextPosition == 0 || nextPosition == 1;
+        return nextPosition >= 0 && nextPosition <= 2;
     }
 
     @Override
@@ -28,10 +28,14 @@ public class ProjectController extends Controller {
 
     @Override
     public Controller getNextController(int nextPosition) {
-        return new PaymentController(this, project);
+        if (nextPosition == 1) {
+            return new PaymentController(this, project);
+        } else {
+            return new QuestionAndAnswerController(this, project);
+        }
     }
 
-    public Project getProject(){
+    public Project getProject() {
         return project;
     }
 }
